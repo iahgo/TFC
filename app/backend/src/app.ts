@@ -28,7 +28,7 @@ class App {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
-
+// inicio
 export { App };
 
 // Essa segunda exportação é estratégica, e a execução dos testes de cobertura depende dela
