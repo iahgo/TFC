@@ -10,14 +10,11 @@ const decrypt = (reqPassw: string, dbPassw: string) =>
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const allUsers = await userService.getAllUsers();
-  // console.log(allUsers);
   const user = allUsers.find((u) => u.email === email);
   if (!user) return res.status(401).json({ message: 'Incorrect email or password' });
   if ((await decrypt(password, user.password)) === false) {
-    console.log('email ou senha erado');
     return res.status(401).json({ message: 'Incorrect email or password' });
   }
-  console.log('senha correta');
   const token = createToken(user.dataValues);
   return res.status(200).send({ token });
 };
