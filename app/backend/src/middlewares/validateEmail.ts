@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 
-const validateEmail = (req:Request, res:Response, next:NextFunction) => {
-  const { email, password } = req.body;
+// const validEmail = (email:string) => /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
 
-  if (!email || !password) return res.status(400).json({ message: 'All fields must be filled' });
+const validateEmail = (req:Request, res:Response, next:NextFunction) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: 'All fields must be filled' });
+  // if (validEmail(email) === false) return res.status(400).send('Campo "email" inválido');
   next();
 };
 
