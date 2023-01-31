@@ -24,19 +24,14 @@ const getMatcheById = async (req: Request, res: Response) => {
 
 const insertMatch = async (req: Request, res: Response) => {
   const { authorization } = req.headers;
-  // console.log(authorization);
   const userData = validateToken(authorization as string);
-  // const tes = validateToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20ifSwiaWF0IjoxNjc1MTE2NzMyLCJleHAiOjE2NzUxNTk5MzJ9.jOZUkHIdQFxZjcHVQ9nQ8gzRGtuzfsgXThl_ftYkF-U')
-  // console.log('----------');
-  // console.log(tes);
-  // console.log('----------');
+
   if (typeof userData === 'string') {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
   if (!authorization || !userData) {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
-  // console.log(userData);
   const newMatch = await MatchesService.insertMatch(req.body as INewMatch);
   return res.status(201).json(newMatch);
 };

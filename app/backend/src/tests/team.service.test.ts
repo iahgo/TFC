@@ -26,7 +26,7 @@ describe('Teste o TeamsService', function() {
         expect(response.status).to.be.equal(200);
     });
 
-    it('Teste o retorno do findOne', async function() {
+    it('Teste o retorno do findByPk', async function() {
 
       sinon.stub(TeamsModel, 'findByPk').resolves();
 
