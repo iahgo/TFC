@@ -7,10 +7,16 @@ const validateTeams = (req:Request, res:Response, next:NextFunction) => {
       message: 'It is not possible to create a match with two equal teams',
     });
   }
+  // const validHomeTeam = teamsService.getTeamById(homeTeamId);
+  // const validAwayTeam = teamsService.getTeamById(awayTeamId);
+
+  // console.log(validHomeTeam);
+  // console.log(validAwayTeam);
+
   if (homeTeamId > 16 || homeTeamId < 1 || awayTeamId > 16 || awayTeamId < 1) {
-    return { status: 404,
-      message: 'There is no team with such id!' };
+    return res.status(404).json({ message: 'There is no team with such id!' });
   }
+  console.log('times existem');
   next();
 };
 
