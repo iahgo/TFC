@@ -1,3 +1,4 @@
+import INewMatch from '../interfaces/INewMatch';
 import MatchesModel from '../database/models/match.model';
 import TeamModel from '../database/models/team.model';
 
@@ -28,8 +29,20 @@ const getMatcheById = async (id: number) => {
   return match;
 };
 
+const insertMatch = async (data: INewMatch) => {
+  const newMatch = await MatchesModel.create({ ...data, inProgress: true });
+  return newMatch;
+};
+
+const updateMatch = async (id: number) => {
+  const matchUpdated = await MatchesModel.update({ inProgress: false }, { where: { id } });
+  return matchUpdated;
+};
+
 export default {
   getAllMatches,
   getMatcheById,
   getAllMatchesInProgress,
+  insertMatch,
+  updateMatch,
 };

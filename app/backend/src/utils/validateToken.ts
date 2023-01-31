@@ -7,6 +7,7 @@ dotenv.config();
 export default (token: string):string | jwt.JwtPayload => {
   try {
     const response = jwt.verify(token, secret);
+    console.log(response);
     return response;
   } catch (err) {
     return `${err}`;
